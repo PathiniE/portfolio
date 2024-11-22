@@ -1,4 +1,4 @@
-import { LocaleRouteNormalizer } from "next/dist/server/normalizers/locale-route-normalizer";
+
 
 export const navItems = [
     { name: "About", link: "#about" },
