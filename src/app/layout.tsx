@@ -1,6 +1,6 @@
 import type React from "react"
 import { Geist, Manrope } from "next/font/google"
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "../components/theme-provider"
 import "./globals.css"
 
 const geist = Geist({
