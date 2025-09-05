@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react"
-import Image from "next/image"
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import Image from "next/image";
 
 export function HeroSection() {
   return (
@@ -27,7 +27,7 @@ export function HeroSection() {
             >
               Hi, I&#39;m{" "}
               <span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
-                Alex Johnson
+                Pathini Ekanayaka
               </span>
             </motion.h1>
 
@@ -37,8 +37,9 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              Computer Science student passionate about building innovative software solutions. Currently seeking
-              software engineering internship opportunities.
+              Computer Science student passionate about building innovative
+              software solutions. Currently seeking software engineering
+              internship opportunities.
             </motion.p>
 
             <motion.div
@@ -50,7 +51,11 @@ export function HeroSection() {
               <Button size="lg" className="font-medium w-full sm:w-auto">
                 View My Work
               </Button>
-              <Button variant="outline" size="lg" className="font-medium bg-transparent w-full sm:w-auto">
+              <Button
+                variant="outline"
+                size="lg"
+                className="font-medium bg-transparent w-full sm:w-auto"
+              >
                 Download Resume
               </Button>
             </motion.div>
@@ -61,13 +66,25 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
-              <Button variant="ghost" size="icon" className="hover:text-secondary">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:text-secondary"
+              >
                 <Github className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:text-secondary">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:text-secondary"
+              >
                 <Linkedin className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:text-secondary">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:text-secondary"
+              >
                 <Mail className="h-5 w-5" />
               </Button>
             </motion.div>
@@ -108,11 +125,14 @@ export function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
         >
-          <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}>
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+          >
             <ArrowDown className="h-5 w-5 sm:h-6 sm:w-6 text-muted-foreground" />
           </motion.div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

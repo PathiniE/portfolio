@@ -47,11 +47,11 @@ export function AboutSection() {
                 <p className="text-muted-foreground mb-4">
                   <strong>Bachelor of Science in Computer Science</strong>
                   <br />
-                  University of Technology
+                  University of Sri Jayewardenapura
                   <br />
-                  Expected Graduation: May 2025
+                  Expected Graduation: 2026
                   <br />
-                  GPA: 3.8/4.0
+                  GPA: 3.4/4.0
                 </p>
 
                 <div className="flex items-center mb-4">

@@ -1,0 +1,175 @@
+name: Portfolio CI/CD Pipeline
+
+# Trigger the workflow on push to main branch and pull requests
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# Set environment variables
+env:
+  NODE_VERSION: '20'
+  
+
+jobs:
+  # Job 1: Test and Build
+  test-and-build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Step 1: Checkout code from repository
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch full history for better caching
+    
+    # Step 2: Setup Node.js environment
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+    
+    # Step 3: Cache node_modules for faster builds
+    - name: Cache dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.npm
+          ${{ github.workspace }}/.next/cache
+        key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+        restore-keys: |
+          ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+    
+    # Step 4: Install dependencies
+    - name: Install dependencies
+      run: npm ci
+    
+    # Step 5: Run type checking (since you're using TypeScript)
+    - name: Type check
+      run: npm run type-check
+    
+    # Step 6: Run linting
+    - name: Lint code
+      run: npm run lint
+    
+    # Step 7: Build the project with Turbopack
+    - name: Build project
+      run: npm run build
+      env:
+        NODE_ENV: production
+        # EmailJS environment variables (if needed for build)
+        NEXT_PUBLIC_EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
+        NEXT_PUBLIC_EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
+        NEXT_PUBLIC_EMAILJS_PUBLIC_KEY: ${{ secrets.EMAILJS_PUBLIC_KEY }}
+    
+    # Step 8: Upload build artifacts for deployment job
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-files
+        path: |
+          out/
+          .next/
+        retention-days: 1
+        if-no-files-found: error
+
+  # Job 2: Deploy to GitHub Pages (only on main branch)
+  deploy:
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    # Configure GitHub Pages permissions
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+    # Step 1: Download build artifacts
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: build-files
+    
+    # Step 2: Setup Pages
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+    
+    # Step 3: Upload to GitHub Pages
+    - name: Upload to GitHub Pages
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./out
+    
+    # Step 4: Deploy to GitHub Pages
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+
+  # Job 3: Security and Quality Checks (runs in parallel)
+  security-scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    # Security audit
+    - name: Run security audit
+      run: npm audit --audit-level=moderate
+      continue-on-error: true
+    
+    # Check for outdated packages
+    - name: Check for outdated packages
+      run: npm outdated
+      continue-on-error: true
+    
+    # Bundle size analysis (optional)
+    - name: Analyze bundle size
+      run: |
+        npm run build:analyze
+        echo "Bundle analysis complete. Check the output above for insights."
+      continue-on-error: true
+
+  # Job 4: Performance Testing (optional, runs on PR)
+  performance-test:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build project
+      run: npm run build
+    
+    # You can add Lighthouse CI or other performance testing tools here
+    - name: Performance check placeholder
+      run: |
+        echo "⚡ Performance testing would go here"
+        echo "Consider adding Lighthouse CI, Bundle Analyzer, or other performance tools"
