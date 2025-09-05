@@ -3,9 +3,9 @@ name: Portfolio CI/CD Pipeline
 # Trigger the workflow on push to main branch and pull requests
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 # Set environment variables
 env:
