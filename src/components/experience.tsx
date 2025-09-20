@@ -9,44 +9,25 @@ export function ExperienceSection() {
   const experiences = [
     {
       title: "Frontend Developer Intern",
-      company: "TechStart Solutions",
-      location: "San Francisco, CA",
-      period: "Jun 2024 - Aug 2024",
+      company: "Flyxto",
+      location: "Sri Lanka",
+      period: "Feb 2025 - Present",
       description:
-        "Developed responsive web applications using React and TypeScript. Collaborated with design team to implement pixel-perfect UI components and improved website performance by 40%.",
-      technologies: ["React", "TypeScript", "Tailwind CSS", "Git", "Figma"],
+        "Developing and maintaining frontend applications using modern web technologies. Collaborating with development teams to implement user interface solutions",
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Git", "Figma", "Next.js"],
       type: "internship",
     },
     {
-      title: "Web Development Teaching Assistant",
-      company: "University of Technology",
-      location: "Remote",
-      period: "Jan 2024 - Present",
+      title: "Digital Banking Operations Intern",
+      company: "Seylan Bank PLC",
+      location: "Sri Lanka",
+      period: "Sep 2021 -- Mar 2022",
       description:
-        "Assist students in learning web development fundamentals. Grade assignments, conduct office hours, and help debug code for 50+ students in HTML, CSS, and JavaScript courses.",
-      technologies: ["HTML", "CSS", "JavaScript", "Node.js", "Teaching"],
-      type: "academic",
-    },
-    {
-      title: "Freelance Web Developer",
-      company: "Self-Employed",
-      location: "Remote",
-      period: "Sep 2023 - Present",
-      description:
-        "Built custom websites for small businesses and startups. Managed full project lifecycle from client consultation to deployment, delivering 8+ successful projects.",
-      technologies: ["Next.js", "WordPress", "Shopify", "SEO", "Client Management"],
-      type: "freelance",
-    },
-    {
-      title: "Software Development Volunteer",
-      company: "Local Non-Profit Organization",
-      location: "Local Community",
-      period: "Mar 2023 - Dec 2023",
-      description:
-        "Developed a volunteer management system to streamline operations. Created database schema, built REST API, and implemented user authentication system.",
-      technologies: ["Python", "Django", "PostgreSQL", "Bootstrap", "Heroku"],
-      type: "volunteer",
-    },
+        "Gained experience in digital banking processes and operations. Supported banking technology initiatives and operational workflows",
+      technologies: [],
+      type: "internship",
+    }
+    
   ]
 
   const getTypeColor = (type: string) => {
