@@ -2,10 +2,15 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin } from "lucide-react";
 import Image from "next/image";
 
 export function HeroSection() {
+  const links_of_social = [
+    { github: "https://github.com/PathiniE" },
+    { linkedin: "https://www.linkedin.com/in/pathini-ekanayaka" },
+  ];
+
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-4 sm:px-6 lg:px-8">
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-background to-muted/20" />
@@ -48,8 +53,12 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
-              <Button size="lg" className="font-medium w-full sm:w-auto">
-                View My Work
+              <Button
+                size="lg"
+                className="font-medium w-full sm:w-auto"
+                asChild
+              >
+                <a href="#projects">View My Work</a>
               </Button>
               <Button
                 variant="outline"
@@ -70,22 +79,21 @@ export function HeroSection() {
                 variant="ghost"
                 size="icon"
                 className="hover:text-secondary"
+                asChild
               >
-                <Github className="h-5 w-5" />
+                <a href={links_of_social[0].github} target="_blank" rel="noopener noreferrer">
+                  <Github className="h-5 w-5" />
+                </a>
               </Button>
               <Button
                 variant="ghost"
                 size="icon"
                 className="hover:text-secondary"
+                asChild
               >
-                <Linkedin className="h-5 w-5" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hover:text-secondary"
-              >
-                <Mail className="h-5 w-5" />
+                <a href={links_of_social[1].linkedin} target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="h-5 w-5" />
+                </a>
               </Button>
             </motion.div>
           </motion.div>
@@ -103,8 +111,8 @@ export function HeroSection() {
                 transition={{ duration: 0.3 }}
               >
                 <Image
-                  src="/professional-headshot-of-young-software-engineer.png"
-                  alt="Alex Johnson - Software Engineering Student"
+                  src="/resume.png"
+                  alt="Pathini Priyanwada Ekanayaka"
                   className="w-full h-full object-cover"
                   width={384}
                   height={384}
