@@ -81,19 +81,19 @@ export function ContactSection() {
     {
       icon: Mail,
       label: "Email",
-      value: "alex.johnson@email.com",
-      href: "mailto:alex.johnson@email.com",
+      value: "pathini2002@gmail.com",
+      href: "mailto:pathini2002@gmail.com",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
+      value: "+94729499492",
+      href: "tel:+94729499492",
     },
     {
       icon: MapPin,
-      label: "Location",
-      value: "San Francisco, CA",
+      label: "Address",
+      value: "437/7, Sampath Kumara Mawatha, Ganemulla, Sri Lanka",
       href: null,
     },
   ];
@@ -102,14 +102,14 @@ export function ContactSection() {
     {
       icon: Github,
       label: "GitHub",
-      href: "https://github.com/alexjohnson",
-      username: "@alexjohnson",
+      href: "https://github.com/PathiniE",
+      username: "@PathiniE",
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: "https://linkedin.com/in/alexjohnson",
-      username: "Alex Johnson",
+      href: "https://www.linkedin.com/in/pathini-ekanayaka",
+      username: "Pathini Ekanayaka",
     },
   ];
 
