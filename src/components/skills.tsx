@@ -112,6 +112,12 @@ export function SkillsSection() {
 
   const certifications = [
     {
+      name: "Crash Course: Kubernetes For Absolute Beginners",
+      provider: "KodeKloud",
+      url: "https://learn.kodekloud.com/user/certificate/8b2b5e2a-1921-4239-8794-132e948781a1",
+      date: "Sep 2025",
+    },
+    {
       name: "Neo4j Fundamentals",
       provider: "Neo4j",
       url: "https://graphacademy.neo4j.com/c/952b7a22-026c-4a42-ab83-4b97d1ca1977",
@@ -236,7 +242,7 @@ export function SkillsSection() {
                   className="h-full cursor-pointer hover:shadow-lg transition-all duration-300 hover:scale-105"
                   onClick={() => window.open(cert.url, "_blank")}
                 >
-                  <CardContent className="p-4">
+                  <CardContent className="">
                     <div className="text-left">
                       <h4 className="font-semibold text-sm mb-2 line-clamp-2">
                         {cert.name}
